@@ -47,10 +47,35 @@ Utilizing Remote Desktop Connection, I establish a connection to the Windows VM 
 In Wireshark, I applied a filter for ICMP (Internet Control Message Protocol) traffic and launched PowerShell to execute a ping command. Ping, leveraging ICMP, aids devices in network communication and problem identification in data transmission. I employed ping to test communication with the Ubuntu VM using its private IP address and with google.com. Subsequently, I initiated a continuous ping to the Ubuntu VM to observe the functionality of network security groups. The perpetual ping was executed using the command:<b>`ping -t </b> 
 <br />
 
+![image](https://github.com/Skizfly/azure-network-protocols/assets/153954157/d45f1822-6732-4f2d-a325-0550cc1dc183)
+
+
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+In the Azure portal, I accessed the networking settings for the Ubuntu VM and incorporated an inbound security rule to restrict ICMP traffic. It's essential to set the priority higher than SSH (300) to ensure the rule takes precedence.
+</p>
+<br />
+
+![image](https://github.com/Skizfly/azure-network-protocols/assets/153954157/bfbf756a-90ea-48b5-a789-106066372cae)
+
+<p>
+</p>
+<p>
+Upon revisiting the Windows VM, I observe that ICMP traffic is now blocked following the implementation of the inbound security rule. After modifying the rule to permit traffic once more, the perpetual ping resolves without timing out.
+</p>
+<br />
+
+<p>
+</p>
+<p>
+In the Azure portal, I accessed the networking settings for the Ubuntu VM and incorporated an inbound security rule to restrict ICMP traffic. It's essential to set the priority higher than SSH (300) to ensure the rule takes precedence.
+</p>
+<br />
+
+<p>
+</p>
+<p>
+In the Azure portal, I accessed the networking settings for the Ubuntu VM and incorporated an inbound security rule to restrict ICMP traffic. It's essential to set the priority higher than SSH (300) to ensure the rule takes precedence.
 </p>
 <br />
