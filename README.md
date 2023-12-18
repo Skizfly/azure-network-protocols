@@ -66,16 +66,44 @@ Upon revisiting the Windows VM, I observe that ICMP traffic is now blocked follo
 </p>
 <br />
 
-<p>
-</p>
-<p>
-In the Azure portal, I accessed the networking settings for the Ubuntu VM and incorporated an inbound security rule to restrict ICMP traffic. It's essential to set the priority higher than SSH (300) to ensure the rule takes precedence.
-</p>
-<br />
+![image](https://github.com/Skizfly/azure-network-protocols/assets/153954157/1aa143af-7a0e-4082-b61e-08710e4605a4)
 
 <p>
 </p>
 <p>
-In the Azure portal, I accessed the networking settings for the Ubuntu VM and incorporated an inbound security rule to restrict ICMP traffic. It's essential to set the priority higher than SSH (300) to ensure the rule takes precedence.
+Subsequently, I opted to analyze SSH traffic. Using the ssh command, I logged into the Ubuntu server via PowerShell. Employing Wireshark, I filtered the traffic using <b>tcp.port == 22`</b>. While logged into the Ubuntu server, each command I executed during my session is recorded in Wireshark.
+</p>
+<br />
+
+![image](https://github.com/Skizfly/azure-network-protocols/assets/153954157/cec014c9-880e-4ebe-9875-9772d051c565)
+
+<p>
+</p>
+<p>
+After scrutinizing SSH traffic, I exited the Ubuntu server to focus on DHCP traffic. To witness its effects, I attempted to acquire a new IP address from my VM using the command <b>`ipconfig /renew`</b>. This command would initiate the issuance of a new IP address, resulting in a brief disconnection for a few seconds. After reconnecting, the ensuing traffic is captured and displayed in Wireshark.
+</p>
+<br />
+
+![image](https://github.com/Skizfly/azure-network-protocols/assets/153954157/627e79d7-c5ad-46b5-a46a-0fa1696f2390)
+
+<p>
+</p>
+<p>
+To examine DNS traffic, I employed the filter <b>`udp.port == 53`</b> and the nslookup command. My objective was to observe the results of looking up google.com and disney.com, two highly popular sites.
+<br />
+
+![image](https://github.com/Skizfly/azure-network-protocols/assets/153954157/969474c1-3c65-439a-aca3-911efc4f3e65)
+
+<p>
+</p>
+<p>
+To conclude my lab, I chose to scrutinize RDP traffic. The Wireshark filter for this is <b>`tcp.port == 3389`</b>. Continuous traffic is observed as RDP constantly provides a live stream from one computer to another (in my case, from my computer accessing the VM hosted on Azure), resulting in constant data transmission.
+<br />
+
+<h2>Insights Gained</h2>
+<p>
+</p>
+<p>
+The primary goal of this lab is to explore the utilization of various protocols and ports within a network involving different devices. Although troubleshooting is not the immediate objective, the lab serves the purpose of gathering valuable information. In a troubleshooting scenario, the use of tools such as Wireshark and the command line becomes crucial to understand how traffic moves through ports and protocols in a network. Success in troubleshooting requires both familiarity with these tools and an inquisitive mindset!
 </p>
 <br />
